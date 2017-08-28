@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 var cors = require('cors');
 var dbConnect = require('./config/db/mlab-config')
-var port = 3000
+var port = process.env.PORT || 3000
 var server = express()
 
 var routing = require('./routes/tracks-routes')

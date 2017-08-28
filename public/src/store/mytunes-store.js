@@ -6,7 +6,7 @@ vue.use(vuex)
 
 var store = new vuex.Store({
   state: {
-    myTunes: [],
+    MyItunes: [],
     results: []
   },
   mutations: {
@@ -29,15 +29,23 @@ var store = new vuex.Store({
         commit('setResults', data)
       })
     },
-    getMyTunes({commit, dispatch}){
+    getMyTunes({commit, dispatch}, id){
       //this should send a get request to your server to return the list of saved tunes
-      state.results.push()
+      $.get('http://localhost:3000/api/tracks' + id).then(res => {
+        commit('getMyTunes', res)
+      })
     },
     addToMyTunes({commit, dispatch}, track){
       //this will post to your server adding a new track to your tunes
+      $.post('http://localhost:300/api/tracks', track).then(res => {
+        dispatch('getMyTunes')
+      })
     },
     removeTrack({commit, dispatch}, track){
       //Removes track from the database with delete
+      $.delete('http://localhost:300/api/tracks', track).then(res => {
+        dispatch('getMyTunes')
+      })
     },
     promoteTrack({commit, dispatch}, track){
       //this should increase the position / upvotes and downvotes on the track

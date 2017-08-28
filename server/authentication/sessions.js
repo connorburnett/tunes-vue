@@ -10,7 +10,7 @@ let store = new MongoDBStore(
 // Catch errors 
 store.on('error', function (error) {
 	console.error('SESSION ERROR:', error)
-});
+})
 
 module.exports = session({
 	secret: 'Hello',
