@@ -17,9 +17,14 @@ router.post('/', function (req, res, next) {
         }) .catch(next)
 })
 
-router.delete('/:trackId', (req, res, next) => {
-    var trackId = req.params.trackId
+router.put('/:trackId'), (req, res, next) => {
+    
+}
 
+router.delete('/:trackId', (req, res, next) => {
+    
+    var trackId = req.params.trackId
+    console.log(trackId)
     tracks.findByIdAndRemove(trackId)
         .then(trackId => {
             res.send({ message: 'Successfully deleted.' })

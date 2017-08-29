@@ -17,10 +17,16 @@
                         <h5>{{ track.collectionPrice }}</h5>
                     </div>
                     <audio controls>
-                        <source :src="this.trackUrl" type="audio/mpeg">
+                        <source :src="track.previewUrl" type="audio/mp4">
                     </audio>
                     <div class="remove">
                         <button @click="removeFromMyTunes(track)">Remove Track</button>
+                    </div>
+                    <div class="promote">
+                        <button @click="">^</button>
+                    </div>
+                    <div class="demote">
+                        <button @click="">v</button>
                     </div>
                 </div>
             </div>
@@ -42,15 +48,22 @@
         },
         computed: {
             tracks() {
-                return this.$store.state.results.results
+                return this.$store.state.tracks
             }
         },
         methods: {
             removeFromMyTunes(track) {
-                this.$store.dispatch("removeTrack", track)
+                this.$store.dispatch('removeTrack', track)
+            },
+            promoteTrack(track) {
+                this.$store.dispatch('promoteTrack', track)
+            },
+            demoteTrack(track) {
+                this.$store.dispatch('demoteTrack', track)
             }
         },
         mounted() {
+            this.$store.dispatch('getMyTunes')
         }
     }
 
