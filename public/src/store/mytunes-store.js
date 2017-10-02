@@ -40,7 +40,7 @@ var store = new vuex.Store({
     },
     getMyTunes({ commit, dispatch }, id) {
       //this should send a get request to your server to return the list of saved tunes
-      $.get('http://localhost:3000/api/tracks').then(res => {
+      $.get('http://tunesvue.herokuapp.com/api/tracks').then(res => {
         
         commit('setTracks', res)
         console.log(res)
@@ -49,7 +49,7 @@ var store = new vuex.Store({
     },
     addToMyTunes({ commit, dispatch }, track) {
       //this will post to your server adding a new track to your tunes
-      $.post('http://localhost:3000/api/tracks', track).then(res => {
+      $.post('http://tunesvue.herokuapp.com/api/tracks', track).then(res => {
         dispatch('getMyTunes')
       })
     },
@@ -59,7 +59,7 @@ var store = new vuex.Store({
       $.ajax({
         method: 'DELETE',
         contentType: 'application/json',
-        url: 'http://localhost:3000/api/tracks/' + track._id,
+        url: 'http://tunesvue.herokuapp.com/api/tracks/' + track._id,
       })
         .then(res => {
           dispatch('getMyTunes') 
